@@ -1,0 +1,31 @@
+import express from "express";
+import dotenv from "dotenv";
+import proxy from "express-http-proxy";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+
+dotenv.config();
+const port = process.env.PORT;
+
+const app = express();
+
+// middlwwares
+app.use(cookieParser());
+app.use(express.json());
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+  }),
+);
+
+// routes
+app.use("/auth", proxy(process.env.AUTH_SERVICE));
+
+app.get("/", (req, res) => {
+  return res.send("hello from gateway");
+});
+
+app.listen(port, () => {
+  console.log(`gateway server started at ${port}`);
+});
