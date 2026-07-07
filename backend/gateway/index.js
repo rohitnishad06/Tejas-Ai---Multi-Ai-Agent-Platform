@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import proxy from "express-http-proxy";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { authMiddleware } from "./middleware/authMiddleware.js";
+import { getCurrentuser } from "./controllers/userController.js";
 
 dotenv.config();
 const port = process.env.PORT;
@@ -20,8 +22,8 @@ app.use(
 );
 
 // routes
-app.use("/auth", proxy(process.env.AUTH_SERVICE));
-
+app.use("/api/auth", proxy(process.env.AUTH_SERVICE));
+app.get("/api/me", authMiddleware, getCurrentuser);
 app.get("/", (req, res) => {
   return res.send("hello from gateway");
 });
