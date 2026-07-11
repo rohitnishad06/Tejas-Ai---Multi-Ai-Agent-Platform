@@ -1,4 +1,4 @@
-import { START, StateGraph } from "@langchain/langgraph";
+import { END, START, StateGraph } from "@langchain/langgraph";
 import { agentState } from "./state.js";
 import { chatAgent } from "../agents/chatAgent.js";
 import { codingAgent } from "../agents/codingAgent.js";
@@ -18,9 +18,9 @@ workflow.addNode("pdf", pdfAgent);
 workflow.addNode("ppt", pptAgent);
 workflow.addNode("search", searchAgent);
 
-workflow.addEdge("__start__", "router");
+workflow.addEdge(START, "router");
 workflow.addConditionalEdges(
-  "routes",
+  "router",
   (state) => {
     switch (state.agent) {
       case "chat":
@@ -50,11 +50,11 @@ workflow.addConditionalEdges(
 );
 
 workflow.addEdge("search", "chat");
-workflow.addEdge("chat", "__end__");
-workflow.addEdge("coding", "__end__");
-workflow.addEdge("pdf", "__end__");
-workflow.addEdge("ppt", "__end__");
-workflow.addEdge("vision", "__end__");
+workflow.addEdge("chat", END);
+workflow.addEdge("coding", END);
+workflow.addEdge("pdf", END);
+workflow.addEdge("ppt", END);
+workflow.addEdge("vision", END);
 
 export const graph = workflow.compile();
 

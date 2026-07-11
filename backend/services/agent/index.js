@@ -1,6 +1,8 @@
-import express from "express";
 import dotenv from "dotenv";
+dotenv.config();
+import express from "express";
 import connectDB from "./config/db.js";
+import agentRoute from "./routes/agentRoute.js";
 
 dotenv.config();
 
@@ -10,9 +12,9 @@ const port = process.env.PORT;
 //middleware
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  return res.send("hello from agent");
-});
+app.use("/", agentRoute)
+
+
 
 app.listen(port, () => {
   connectDB();

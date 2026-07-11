@@ -9,7 +9,7 @@ import {
 
 const chatRouter = express.Router();
 
-chatRouter.get("/get-conversation", getConversation);
+chatRouter.get("/get-conversations", getConversation);
 chatRouter.get("/create-conversation", createConversation);
 chatRouter.get("/get-conversation/:conversationId", getMessage);
 chatRouter.post("/update-conversation", updateConversation);

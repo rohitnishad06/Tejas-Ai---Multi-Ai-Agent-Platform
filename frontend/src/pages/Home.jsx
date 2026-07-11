@@ -5,6 +5,9 @@ import { auth, googleProvider } from "../../utils/firebase";
 import { FcGoogle } from "react-icons/fc";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserData } from "../redux/userSlice.js";
+import SideBar from "../components/SideBar.jsx";
+import ChatArea from "../components/ChatArea.jsx";
+import ArtiFact from "../components/Artifact.jsx";
 
 const Home = () => {
   const { userData } = useSelector((state) => state.user);
@@ -27,6 +30,12 @@ const Home = () => {
 
   return (
     <div className="h-screen flex bg-[#0d0f14] text-white overflow-hidden">
+
+      <SideBar/>
+      <ChatArea/>
+      <ArtiFact/>
+
+
       {/* login pop-up */}
       {!userData && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
