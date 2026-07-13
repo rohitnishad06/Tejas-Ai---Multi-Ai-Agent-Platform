@@ -77,11 +77,13 @@ export const saveMessage = async (req, res) => {
 export const getMessage = async (req, res) => {
   try {
     const { conversationId } = req.params
+
     const messages = await messageModel.find({
       conversationId,
-    }).sort({ createdAt: -1 });
+    })
 
     return res.status(200).json(messages);
+
   } catch (error) {
     return res.status(500).json({ message: `save message error : ${error}` });
   }

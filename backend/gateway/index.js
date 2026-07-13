@@ -6,6 +6,7 @@ import cors from "cors";
 import { authMiddleware } from "./middleware/authMiddleware.js";
 import { getCurrentuser } from "./controllers/userController.js";
 import { proxyWithHeader } from "./utils/proxyWithHeader.js";
+import morgan from "morgan";
 
 dotenv.config();
 const port = process.env.PORT;
@@ -13,6 +14,7 @@ const port = process.env.PORT;
 const app = express();
 
 // middlwwares
+app.use(morgan("dev"))
 app.use(cookieParser());
 app.use(express.json());
 app.use(

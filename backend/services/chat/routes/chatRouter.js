@@ -11,8 +11,9 @@ const chatRouter = express.Router();
 
 chatRouter.get("/get-conversations", getConversation);
 chatRouter.get("/create-conversation", createConversation);
-chatRouter.get("/get-conversation/:conversationId", getMessage);
+chatRouter.get("/get-messages/:conversationId", getMessage);
 chatRouter.post("/update-conversation", updateConversation);
-chatRouter.get("/save-message", saveMessage);
+chatRouter.post("/save-message", saveMessage);
+
 
 export default chatRouter;

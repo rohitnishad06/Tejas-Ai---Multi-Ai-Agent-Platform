@@ -63,7 +63,7 @@ return {
   ...state,
   agent:response.content
         .trim()
-        .toLowercase()
+        .toLowerCase()
 }
 
 }
