@@ -15,10 +15,10 @@ const chatArea = () => {
 
   // get the current msg
 useEffect(() => {
-  // if (!selectedConversation?._id) {
-  //   dispatch(setMessages([]));
-  //   return;
-  // }
+  if (!selectedConversation?._id) {
+    dispatch(setMessages([]));
+    return;
+  }
 
   const getMsg = async () => {
     const res = await getMessages(selectedConversation?._id);
