@@ -9,28 +9,28 @@ import { setMessages } from "../redux/messageSlice";
 const chatArea = () => {
   const { selectedConversation } = useSelector((state) => state.conversation);
 
-    const { messages } = useSelector((state) => state.message);
+  const { messages } = useSelector((state) => state.message);
   const dispatch = useDispatch();
-  console.log(selectedConversation?._id)
+  console.log(selectedConversation?._id);
 
   // get the current msg
-useEffect(() => {
-  if (!selectedConversation?._id) {
-    dispatch(setMessages([]));
-    return;
-  }
+  useEffect(() => {
+    if (!selectedConversation?._id) {
+      dispatch(setMessages([]));
+      return;
+    }
 
-  const getMsg = async () => {
-    const res = await getMessages(selectedConversation?._id);
-    console.log(res)
-    dispatch(setMessages(res));
-  };
+    const getMsg = async () => {
+      const res = await getMessages(selectedConversation?._id);
+      console.log(res);
+      dispatch(setMessages(res));
+    };
 
-  getMsg();
-}, [selectedConversation]);
+    getMsg();
+  }, [selectedConversation]);
 
   return (
-    <div className="flex-1 flex flex-col">
+    <div className="flex-1 min-w-0  flex flex-col">
       <Nav />
       <MessageList />
       <ChatInput />

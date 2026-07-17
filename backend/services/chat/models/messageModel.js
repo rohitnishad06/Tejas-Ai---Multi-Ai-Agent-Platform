@@ -11,6 +11,7 @@ const messageSchema = mongoose.Schema(
       enum: ["user", "assistant"],
     },
     content: String,
+    Images: [String],
   },
   { timestamps: true },
 );

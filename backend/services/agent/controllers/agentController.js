@@ -5,7 +5,7 @@ import axios from "axios";
 
 export const agent = async (req, res) => {
   try {
-    const { conversationId, prompt } = req.body;
+    const { conversationId, prompt, agent } = req.body;
 
     // for deleting the redis mermory
     // await redis.del(`messages-${conversationId}`);
@@ -17,7 +17,7 @@ export const agent = async (req, res) => {
       content: prompt,
     });
 
-    const result = await graph.invoke({ prompt, conversationId });
+    const result = await graph.invoke({ prompt, conversationId,agent });
 
     const response = result.aiResponse;
 
@@ -32,9 +32,13 @@ export const agent = async (req, res) => {
       conversationId,
       role: "assistant",
       content: response,
+      images: result.images 
     });
 
-    return res.status(200).json(response);
+    return res.status(200).json({
+      answere:result.aiResponse,
+      images:result.images
+    });
   } catch (error) {
     return res.status(500).json({ message: `chat agent error:${error}` });
   }

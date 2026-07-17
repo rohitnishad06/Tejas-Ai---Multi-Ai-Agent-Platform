@@ -11,7 +11,17 @@ export const chatAgent = async (state) => {
 
   const history = await getMemory(state.conversationId);
 
+  // search result
+  const searchContext = state.searchResults
+    ? `Web Search Results : ${JSON.stringify(state.searchResults)} answere the user only the above search result.`
+    : "";
+
   const systemPrompt = `You are Tejas AI, an intelligent AI assistant.
+
+  ${searchContext}
+   if the searchContext exist:
+   - use search result  to answere.
+   - do not mention internal tools.
 
   Rules:
   - For simple questions, greetings, and short queries, respond naturally in plain text.
