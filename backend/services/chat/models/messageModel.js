@@ -1,5 +1,20 @@
 import mongoose from "mongoose";
 
+const fileSchema = new mongoose.Schema({
+  name:String,
+  content:String
+},{
+  _id:false
+})
+
+const artifactsSchema = new mongoose.Schema({
+  id:Number,
+  type:String,
+  files:[fileSchema]
+},{
+  _id:false
+})
+
 const messageSchema = mongoose.Schema(
   {
     conversationId: {
@@ -11,7 +26,8 @@ const messageSchema = mongoose.Schema(
       enum: ["user", "assistant"],
     },
     content: String,
-    Images: [String],
+    images: [String],
+    artifacts:[artifactsSchema]
   },
   { timestamps: true },
 );

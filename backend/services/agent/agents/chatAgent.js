@@ -13,14 +13,14 @@ export const chatAgent = async (state) => {
 
   // search result
   const searchContext = state.searchResults
-    ? `Web Search Results : ${JSON.stringify(state.searchResults)} answere the user only the above search result.`
+    ? `Web Search Results : ${JSON.stringify(state.searchResults)} answer the user only the above search result.`
     : "";
 
   const systemPrompt = `You are Tejas AI, an intelligent AI assistant.
 
   ${searchContext}
    if the searchContext exist:
-   - use search result  to answere.
+   - use search result  to answer.
    - do not mention internal tools.
 
   Rules:
