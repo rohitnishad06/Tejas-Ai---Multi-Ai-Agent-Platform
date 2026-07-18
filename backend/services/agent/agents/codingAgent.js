@@ -44,6 +44,11 @@ Requirements:
 - Mobile-first
 - Single-page application unless the user requests multiple pages
 
+IMAGES
+===================
+ ALWAYS USE REAL UNSPLASH IMAGES.
+ never use placeholder
+
 Return ONLY valid JSON.
 
 The JSON schema must be exactly:
@@ -91,6 +96,7 @@ ${state.prompt}
           id: Date.now(),
           type: "Project",
           files: data.files || [],
+          title:state.prompt
         },
       ],
     };

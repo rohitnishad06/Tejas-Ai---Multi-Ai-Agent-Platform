@@ -19,7 +19,7 @@ import {
   setConvTitle,
   setSelectedConversation,
 } from "../redux/conversationSlice";
-import { addMessage } from "../redux/messageSlice";
+import { addMessage, setArtifacts } from "../redux/messageSlice";
 import { updateConversation } from "../features/updateConversation";
 
 const ChatInput = () => {
@@ -67,13 +67,20 @@ const ChatInput = () => {
     const payload = {
       conversationId: conversation._id,
       prompt: value.trim(),
-      agent: selectedAgent.toLowerCase()
+      agent: selectedAgent.toLowerCase(),
     };
 
     dispatch(addMessage({ role: "user", content: value.trim() }));
     setValue("");
     const data = await sendMessage(payload);
-    await dispatch(addMessage({ role: "assistant", content: data?.answer, images:data?.images }));
+    dispatch(setArtifacts(data.artifacts || []));
+    dispatch(
+      addMessage({
+        role: "assistant",
+        content: data?.answer,
+        images: data?.images,
+      }),
+    );
 
     console.log(data);
 

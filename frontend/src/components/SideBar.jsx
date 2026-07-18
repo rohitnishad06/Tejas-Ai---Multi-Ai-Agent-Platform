@@ -21,7 +21,7 @@ import {
 import { createConversation } from "../features/createConversation";
 import { logout } from "../features/logOut";
 import { setUserData } from "../redux/userSlice";
-
+import { clearArtifacts } from "../redux/messageSlice";
 
 const SideBar = () => {
   const dispatch = useDispatch();
@@ -37,6 +37,7 @@ const SideBar = () => {
   const handleCreateConversation = async () => {
     const data = await createConversation();
     dispatch(addConversation(data));
+    dispatch(clearArtifacts());
   };
 
   // get all the conversation
@@ -139,7 +140,11 @@ const SideBar = () => {
           {/* pencil Icon */}
           <button
             className="flex items-center justify-center w-7 h-7 rounded-lg text-slate-500 hover:text-slate-200 hover:bg-white/[0.05] transition-colors duration-150 bg-transparent border-none cursor-pointer"
-            onClick={() => dispatch(setSelectedConversation(null))}
+            onClick={() => {
+              dispatch(setSelectedConversation(null));
+              dispatch(setMessages([]));
+              dispatch(clearArtifacts());
+            }}
           >
             <PenSquareIcon size={14} />
           </button>
@@ -149,7 +154,11 @@ const SideBar = () => {
         <div className="px-4 pt-4 pb-1">
           <button
             className="w-full flex items-center justify-center gap-2 text-sm font-medium text-white bg-linear-to-br from-indigo-500 to-violet-700 rounded-xl py-[10px] border-none cursor-pointer hover:opacity-90 transition-opacity duration-150 rounded-xl"
-            onClick={() => dispatch(setSelectedConversation(null))}
+            onClick={() => {
+              dispatch(setSelectedConversation(null));
+              dispatch(setMessages([]));
+              dispatch(clearArtifacts());
+            }}
           >
             <Plus size={15} />
             New Chat
@@ -252,7 +261,6 @@ const SideBar = () => {
             <button>Login</button>
           )}
         </div>
-        
       </div>
     </div>
   );
