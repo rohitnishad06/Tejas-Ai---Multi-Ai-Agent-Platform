@@ -216,6 +216,8 @@ const MessageBubble = ({ role, content, images }) => {
   },
 };
 
+console.log("CONTENT:", content);
+
   return (
     <div
       className={`flex w-full mb-4 ${isUser ? "justify-end" : "justify-start"}`}

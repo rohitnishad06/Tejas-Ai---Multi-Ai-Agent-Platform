@@ -2,7 +2,7 @@ import { END, START, StateGraph } from "@langchain/langgraph";
 import { agentState } from "./state.js";
 import { chatAgent } from "../agents/chatAgent.js";
 import { codingAgent } from "../agents/codingAgent.js";
-import { visionAgent } from "../agents/vision.js";
+import { visionAgent } from "../agents/visionAgent.js";
 import { pdfAgent } from "../agents/pdfAgent.js";
 import { pptAgent } from "../agents/pptAgent.js";
 import { searchAgent } from "../agents/searchAgent.js";
