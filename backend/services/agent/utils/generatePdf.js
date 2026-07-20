@@ -6,9 +6,9 @@ const generatePdf = async (data) => {
       size: "A4",
       margin: 50,
       info: {
-        Author: "CortexAI",
+        Author: "Tejas Ai",
         Title: data.title || "Document",
-        Creator: "CortexAI",
+        Creator: "Tejas Ai",
       },
     });
 

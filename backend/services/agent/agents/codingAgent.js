@@ -20,7 +20,7 @@ export const codingAgent = async (state) => {
 
   if (intent == "CODE_GENERATION") {
     const prompt = `
-You are CortexAI Coding Agent.
+You are Tejas Ai Coding Agent.
 
 Generate the requested project.
 
